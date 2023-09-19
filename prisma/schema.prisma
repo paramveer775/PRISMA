@@ -1,37 +1,32 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+// // schema.prisma
+
+// datasource db {
+//   provider = "postgresql"
+//   url = env("DATABASE_URL")
+// }
+
+// generator client {
+//   provider = "prisma-client-js"
+// }
+
+// model Tweets {
+//   id Int @id @default(autoincrement())
+//   text_message String?
+// }
+
+
+
+datasource db {
+  provider = "postgresql"
+  url = env("DATABASE_URL")
+}
 
 generator client {
   provider = "prisma-client-js"
 }
 
-datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
-}
-
-
-
-
-model Author {
-  AuthorID   Int       @id @default(autoincrement())
-  FirstName  String
-  LastName   String
-  BirthDate  DateTime   @default(now())
-  Nationality String
-
-  
-  books      Book[]
-}
-
-
-model Book {
-  BookID           Int       @id @default(autoincrement())
-  Title            String
-  PublicationYear Int
-  ISBN             String
-  AuthorID         Int
-
-  // Define a relation to the Authors table
-  author           Author    @relation(fields: [AuthorID], references: [AuthorID])
+model Tweets {
+  id Int @id @default(autoincrement())
+  text_message String?
+  image String?
 }
